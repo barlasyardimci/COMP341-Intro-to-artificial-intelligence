@@ -1,6 +1,6 @@
 # Search
 Berkeley link: http://ai.berkeley.edu/search.html
-Question 1 (3 points): Finding a Fixed Food Dot using Depth First Search
+#Question 1 (3 points):Finding a Fixed Food Dot using Depth First Search
 In searchAgents.py, you'll find a fully implemented SearchAgent, which plans out a path through Pacman's world and then executes that path step-by-step. The search algorithms for formulating a plan are not implemented -- that's your job. As you work through the following questions, you might find it useful to refer to the object glossary (the second to last tab in the navigation bar above).
 
 First, test that the SearchAgent is working correctly by running:
@@ -27,7 +27,7 @@ The Pacman board will show an overlay of the states explored, and the order in w
 
 Hint: If you use a Stack as your data structure, the solution found by your DFS algorithm for mediumMaze should have a length of 130 (provided you push successors onto the fringe in the order provided by getSuccessors; you might get 246 if you push them in the reverse order). Is this a least cost solution? If not, think about what depth-first search is doing wrong.
 
-Question 2 (3 points): Breadth First Search
+#Question 2 (3 points): Breadth First Search
 Implement the breadth-first search (BFS) algorithm in the breadthFirstSearch function in search.py. Again, write a graph search algorithm that avoids expanding any already visited states. Test your code the same way you did for depth-first search.
 
 python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs
@@ -39,7 +39,7 @@ Hint: If Pacman moves too slowly for you, try the option --frameTime 0.
 Note: If you've written your search code generically, your code should work equally well for the eight-puzzle search problem without any changes.
 
 python eightpuzzle.py
-Question 3 (3 points): Varying the Cost Function
+#Question 3 (3 points): Varying the Cost Function
 While BFS will find a fewest-actions path to the goal, we might want to find paths that are "best" in other senses. Consider mediumDottedMaze and mediumScaryMaze.
 
 By changing the cost function, we can encourage Pacman to find different paths. For example, we can charge more for dangerous steps in ghost-ridden areas or less for steps in food-rich areas, and a rational Pacman agent should adjust its behavior in response.
@@ -51,7 +51,7 @@ python pacman.py -l mediumDottedMaze -p StayEastSearchAgent
 python pacman.py -l mediumScaryMaze -p StayWestSearchAgent
 Note: You should get very low and very high path costs for the StayEastSearchAgent and StayWestSearchAgent respectively, due to their exponential cost functions (see searchAgents.py for details).
 
-Question 4 (3 points): A* search
+#Question 4 (3 points): A* search
 Implement A* graph search in the empty function aStarSearch in search.py. A* takes a heuristic function as an argument. Heuristics take two arguments: a state in the search problem (the main argument), and the problem itself (for reference information). The nullHeuristic heuristic function in search.py is a trivial example.
 
 You can test your A* implementation on the original problem of finding a path through a maze to a fixed position using the Manhattan distance heuristic (implemented already as manhattanHeuristic in searchAgents.py).
@@ -59,7 +59,7 @@ You can test your A* implementation on the original problem of finding a path th
 python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
 You should see that A* finds the optimal solution slightly faster than uniform cost search (about 549 vs. 620 search nodes expanded in our implementation, but ties in priority may make your numbers differ slightly). What happens on openMaze for the various search strategies?
 
-Question 5 (3 points): Finding All the Corners
+#Question 5 (3 points): Finding All the Corners
 The real power of A* will only be apparent with a more challenging search problem. Now, it's time to formulate a new problem and design a heuristic for it.
 
 In corner mazes, there are four dots, one in each corner. Our new search problem is to find the shortest path through the maze that touches all four corners (whether the maze actually has food there or not). Note that for some mazes like tinyCorners, the shortest path does not always go to the closest food first! Hint: the shortest path through tinyCorners takes 28 steps.
@@ -76,7 +76,7 @@ Hint: The only parts of the game state you need to reference in your implementat
 
 Our implementation of breadthFirstSearch expands just under 2000 search nodes on mediumCorners. However, heuristics (used with A* search) can reduce the amount of searching required.
 
-Question 6 (3 points): Corners Problem: Heuristic
+#Question 6 (3 points): Corners Problem: Heuristic
 Note: Make sure to complete Question 4 before working on Question 6, because Question 6 builds upon your answer for Question 4.
 
 Implement a non-trivial, consistent heuristic for the CornersProblem in cornersHeuristic.
@@ -102,7 +102,7 @@ at most 1600	2/3
 at most 1200	3/3
 Remember: If your heuristic is inconsistent, you will receive no credit, so be careful!
 
-Question 7 (4 points): Eating All The Dots
+#Question 7 (4 points): Eating All The Dots
 Now we'll solve a hard search problem: eating all the Pacman food in as few steps as possible. For this, we'll need a new search problem definition which formalizes the food-clearing problem: FoodSearchProblem in searchAgents.py (implemented for you). A solution is defined to be a path that collects all of the food in the Pacman world. For the present project, solutions do not take into account any ghosts or power pellets; solutions only depend on the placement of walls, regular food and Pacman. (Of course ghosts can ruin the execution of a solution! We'll get to that in the next project.) If you have written your general search methods correctly, A* with a null heuristic (equivalent to uniform-cost search) should quickly find an optimal solution to testSearch with no code change on your part (total cost of 7).
 
 python pacman.py -l testSearch -p AStarFoodSearchAgent
@@ -127,7 +127,7 @@ at most 9000	4/4 (full credit; medium)
 at most 7000	5/4 (optional extra credit; hard)
 Remember: If your heuristic is inconsistent, you will receive no credit, so be careful! Can you solve mediumSearch in a short time? If so, we're either very, very impressed, or your heuristic is inconsistent.
 
-Question 8 (3 points): Suboptimal Search
+#Question 8 (3 points): Suboptimal Search
 Sometimes, even with A* and a good heuristic, finding the optimal path through all the dots is hard. In these cases, we'd still like to find a reasonably good path, quickly. In this section, you'll write an agent that always greedily eats the closest dot. ClosestDotSearchAgent is implemented for you in searchAgents.py, but it's missing a key function that finds a path to the closest dot.
 
 Implement the function findPathToClosestDot in searchAgents.py. Our agent solves this maze (suboptimally!) in under a second with a path cost of 350:
